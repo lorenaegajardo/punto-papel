@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import Inicio from './pages/Inicio'
@@ -10,7 +10,19 @@ import BarraNavegacion from './components/Navbar'
 import Footer from "./components/Footer";
 
 function App() {
-  const [carrito, setCarrito] = useState([])
+  const [carrito, setCarrito] = useState(() => {
+    try {
+      const carritoGuardado = localStorage.getItem('carritoPuntoPapel')
+      return carritoGuardado ? JSON.parse(carritoGuardado) : []
+    } catch {
+        return []
+    }
+  })
+
+  useEffect(() => {
+    localStorage.setItem('carritoPuntoPapel', JSON.stringify(carrito))
+  }, [carrito])
+
   const agregarAlCarrito = (producto) => {
   setCarrito((carritoActual) => {
     const productoExistente = carritoActual.find(
@@ -28,6 +40,32 @@ function App() {
     return [...carritoActual, { ...producto, cantidad: 1 }]
   })
 }
+
+const eliminarDelCarrito = (idProducto) => {
+  setCarrito((carritoActual) =>
+    carritoActual.filter((item) => item.id !== idProducto)
+  )
+}
+
+const cambiarCantidad = (idProducto, nuevaCantidad) => {
+  if (Number.isInteger(nuevaCantidad) && nuevaCantidad >= 0) {
+    setCarrito((carritoActual) =>
+      carritoActual
+        .map((item) =>
+          item.id === idProducto
+            ? { ...item, cantidad: nuevaCantidad }
+            : item
+        )
+        .filter((item) => item.cantidad > 0)
+    )
+  }
+}
+
+const totalCarrito = carrito.reduce(
+  (total, producto) => total + producto.precio * producto.cantidad,
+  0
+)
+
   return (
       <div className="d-flex flex-column min-vh-100">
     <BarraNavegacion />
@@ -47,9 +85,18 @@ function App() {
 
       <Route
         path="/carrito"
-        element={<Carrito carrito={carrito} />}
+        element={
+          <Carrito
+            carrito={carrito}
+            eliminarDelCarrito={eliminarDelCarrito}
+            cambiarCantidad={cambiarCantidad}
+            totalCarrito={totalCarrito}
+          />
+        }
       />
+
         <Route path="/contacto" element={<Contacto />} />
+
       </Routes>
     </main>
 
