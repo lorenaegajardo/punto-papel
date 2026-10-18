@@ -1,16 +1,55 @@
-# React + Vite
+# Punto Papel
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Punto Papel es una tienda online ficticia de artículos de librería y papelería, desarrollada como trabajo práctico grupal para la materia Construcción de Interfaces de Usuario de la UNAHUR.
 
-Currently, two official plugins are available:
+## Tecnologías utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React
+- Vite
+- JavaScript
+- React Bootstrap
+- React Router DOM
+- CSS
 
-## React Compiler
+## Funcionalidades previstas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Página de inicio.
+- Catálogo de productos.
+- Búsqueda y filtrado de productos.
+- Vista de detalle de cada producto.
+- Carrito de compras con cantidades y cálculo del total.
+- Formulario de compra con validaciones.
+- Diseño adaptable a diferentes tamaños de pantalla.
 
-## Expanding the ESLint configuration
+## Instalación y ejecución
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Para ejecutar el proyecto localmente:
+
+1. Clonar el repositorio:
+
+   `git clone https://github.com/lorenaegajardo/punto-papel.git`
+
+2. Ingresar a la carpeta del proyecto:
+
+   `cd punto-papel`
+
+3. Instalar las dependencias:
+
+   `npm install`
+
+4. Iniciar el servidor de desarrollo:
+
+   `npm run dev`
+
+5. Abrir en el navegador la dirección que indique la terminal.
+
+## Integrantes
+
+- Lorena Gajardo
+- Elías Cardozo
+- Gabriela Da Silva
+- Cristian Nuñez
+
+## Estado del proyecto
+
+En desarrollo.
