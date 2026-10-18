@@ -7,21 +7,26 @@ import DetalleProducto from './pages/DetalleProducto'
 import Carrito from './pages/Carrito'
 import Contacto from './pages/Contacto'
 import BarraNavegacion from './components/Navbar'
+import Footer from "./components/Footer";
 
 function App() {
   return (
-     <>
-        <BarraNavegacion />
+      <div className="d-flex flex-column min-vh-100">
+    <BarraNavegacion />
 
-        <Routes>
-          <Route path="/" element={<Inicio />} />
-          <Route path="/productos" element={<Productos />} />
-          <Route path="/producto/:id" element={<DetalleProducto />} />
-          <Route path="/carrito" element={<Carrito />} />
-          <Route path="/contacto" element={<Contacto />} />
-        </Routes>
-      </>
+    <main className="flex-grow-1">
+      <Routes>
+        <Route path="/" element={<Inicio />} />
+        <Route path="/productos" element={<Productos />} />
+        <Route path="/producto/:id" element={<DetalleProducto />} />
+        <Route path="/carrito" element={<Carrito />} />
+        <Route path="/contacto" element={<Contacto />} />
+      </Routes>
+    </main>
 
+    <Footer />
+  </div>
+      
   )
 }
 
