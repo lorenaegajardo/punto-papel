@@ -1,4 +1,4 @@
-
+import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import Inicio from './pages/Inicio'
@@ -10,6 +10,24 @@ import BarraNavegacion from './components/Navbar'
 import Footer from "./components/Footer";
 
 function App() {
+  const [carrito, setCarrito] = useState([])
+  const agregarAlCarrito = (producto) => {
+  setCarrito((carritoActual) => {
+    const productoExistente = carritoActual.find(
+      (item) => item.id === producto.id
+    )
+
+    if (productoExistente) {
+      return carritoActual.map((item) =>
+        item.id === producto.id
+          ? { ...item, cantidad: item.cantidad + 1 }
+          : item
+      )
+    }
+
+    return [...carritoActual, { ...producto, cantidad: 1 }]
+  })
+}
   return (
       <div className="d-flex flex-column min-vh-100">
     <BarraNavegacion />
@@ -17,9 +35,20 @@ function App() {
     <main className="flex-grow-1">
       <Routes>
         <Route path="/" element={<Inicio />} />
-        <Route path="/productos" element={<Productos />} />
-        <Route path="/producto/:id" element={<DetalleProducto />} />
-        <Route path="/carrito" element={<Carrito />} />
+        <Route
+          path="/productos"
+          element={<Productos agregarAlCarrito={agregarAlCarrito} />}
+      />
+
+      <Route
+        path="/producto/:id"
+        element={<DetalleProducto agregarAlCarrito={agregarAlCarrito} />}
+      />
+
+      <Route
+        path="/carrito"
+        element={<Carrito carrito={carrito} />}
+      />
         <Route path="/contacto" element={<Contacto />} />
       </Routes>
     </main>
