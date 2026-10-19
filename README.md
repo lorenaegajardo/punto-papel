@@ -14,16 +14,17 @@ Punto Papel es una tienda online ficticia de artículos de librería y papelerí
 ## Funcionalidades previstas
 
 - Página de inicio.
-- Catálogo de productos.
+- Catálogo de al menos 12 productos.
 - Búsqueda y filtrado de productos.
 - Vista de detalle de cada producto.
 - Carrito de compras con cantidades y cálculo del total.
+- Persistencia del carrito mediante localStorage.
 - Formulario de compra con validaciones.
 - Diseño adaptable a diferentes tamaños de pantalla.
 
 ## Instalación y ejecución
 
-Para ejecutar el proyecto localmente:
+Para ejecutar el proyecto localmente es necesario tener instalados Node.js y npm.
 
 1. Clonar el repositorio:
 
@@ -42,6 +43,14 @@ Para ejecutar el proyecto localmente:
    `npm run dev`
 
 5. Abrir en el navegador la dirección que indique la terminal.
+
+## Compilación para producción
+
+Para generar la versión de producción del proyecto:
+
+`npm run build`
+
+Los archivos generados se guardan en la carpeta `dist`.
 
 ## Integrantes
 
