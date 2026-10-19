@@ -24,22 +24,30 @@ function App() {
   }, [carrito])
 
   const agregarAlCarrito = (producto) => {
-  setCarrito((carritoActual) => {
-    const productoExistente = carritoActual.find(
-      (item) => item.id === producto.id
-    )
-
-    if (productoExistente) {
-      return carritoActual.map((item) =>
-        item.id === producto.id
-          ? { ...item, cantidad: item.cantidad + 1 }
-          : item
+    setCarrito((carritoActual) => {
+      const productoExistente = carritoActual.find(
+        (item) => item.id === producto.id
       )
-    }
 
-    return [...carritoActual, { ...producto, cantidad: 1 }]
-  })
-}
+      if (producto.stock <= 0) {
+        return carritoActual
+      }
+
+      if (productoExistente) {
+        if (productoExistente.cantidad >= producto.stock) {
+          return carritoActual
+        }
+
+        return carritoActual.map((item) =>
+          item.id === producto.id
+           ? { ...item, cantidad: item.cantidad + 1 }
+           : item
+        )
+      }
+
+      return [...carritoActual, { ...producto, cantidad: 1 }]
+    })
+  }
 
 const eliminarDelCarrito = (idProducto) => {
   setCarrito((carritoActual) =>
@@ -52,7 +60,8 @@ const cambiarCantidad = (idProducto, nuevaCantidad) => {
     setCarrito((carritoActual) =>
       carritoActual
         .map((item) =>
-          item.id === idProducto
+          item.id === idProducto &&
+          nuevaCantidad <= item.stock
             ? { ...item, cantidad: nuevaCantidad }
             : item
         )
@@ -63,6 +72,11 @@ const cambiarCantidad = (idProducto, nuevaCantidad) => {
 
 const totalCarrito = carrito.reduce(
   (total, producto) => total + producto.precio * producto.cantidad,
+  0
+)
+
+const cantidadTotal = carrito.reduce(
+  (total, producto) => total + producto.cantidad,
   0
 )
 
@@ -91,6 +105,7 @@ const totalCarrito = carrito.reduce(
             eliminarDelCarrito={eliminarDelCarrito}
             cambiarCantidad={cambiarCantidad}
             totalCarrito={totalCarrito}
+            cantidadTotal={cantidadTotal}
           />
         }
       />
