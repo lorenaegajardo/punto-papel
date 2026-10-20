@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 function CarritoItem({ producto, cambiarCantidad, eliminarDelCarrito }) {
   const subtotal = producto.precio * producto.cantidad;
