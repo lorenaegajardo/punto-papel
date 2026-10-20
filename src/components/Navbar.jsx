@@ -1,4 +1,4 @@
-import { Navbar, Nav, Container, Badge } from 'react-bootstrap';
+import { Navbar, Nav, Container } from 'react-bootstrap';
 import { Link, NavLink } from 'react-router-dom';
 
 function BarraNavegacion() {
