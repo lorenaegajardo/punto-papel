@@ -22,7 +22,7 @@ function ProductoCard({ producto, agregarAlCarrito }) {
               </h6>
             </div>
             <div className="d-flex justify-content-between gap-3" >
-              <Button as={Link} to={`/productos/${producto.id}`} className={`flex-fill ${styles.productoButtonDetalle}`}>
+              <Button as={Link} to={`/producto/${producto.id}`} className={`flex-fill ${styles.productoButtonDetalle}`}>
                 Ver Detalles
               </Button>
               <Button className={`flex-fill ${styles.productoButtonCompra}`} onClick={() => agregarAlCarrito(producto)} disabled={producto.stock <= 0}>
