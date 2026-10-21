@@ -65,7 +65,7 @@ function Productos({ agregarAlCarrito, carrito }) {
         {/* SECCIÓN PRINCIPAL DE PRODUCTOS (Columna derecha) */}
         <Col lg={9}>
           {/* BARRA SUPERIOR CON CONTADOR Y DESPLEGABLE DE ORDEN */}
-          <div className="d-flex justify-content-between align-items-center mb-4 bg-white p-3 rounded-4 shadow-sm">
+          <div className="d-flex justify-content-between align-items-center mb-4 bg-white p-3 rounded-4 shadow-sm flex-wrap gap-3">
             <span className="text-muted small fw-semibold">
               Mostrando {productosOrdenados.length} productos
             </span>
@@ -95,14 +95,16 @@ function Productos({ agregarAlCarrito, carrito }) {
               <h5>No hay productos disponibles en esta categoría.</h5>
             </div>
           ) : (
-            <Row className="g-4">
+            <Row className="g-4 justify-content-center">
               {productosOrdenados.map((p) => (
-                <Col sm={6} xl={4} key={p.id} className="d-flex align-items-stretch">
-                  <ProductoCard
-                    producto={p}
-                    agregarAlCarrito={agregarAlCarrito}
-                    cantidadEnCarrito={carrito.find((item) => item.id === p.id)?.cantidad || 0}
-                  />
+                <Col xs={12} sm={6} xl={4} key={p.id} className="d-flex justify-content-center align-items-stretch">
+                  <div className="w-150" style={{ maxWidth: "350px" }}>
+                    <ProductoCard
+                      producto={p}
+                      agregarAlCarrito={agregarAlCarrito}
+                      cantidadEnCarrito={carrito.find((item) => item.id === p.id)?.cantidad || 0}
+                    />
+                  </div>
                 </Col>
               ))}
             </Row>
