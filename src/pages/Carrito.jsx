@@ -64,12 +64,13 @@ function Carrito({ carrito, cambiarCantidad, eliminarDelCarrito, totalCarrito, c
                 <span>Total:</span> 
                 <span className="text-success">${totalCarrito.toLocaleString("es-AR")}</span>
               </h3>
-              <button 
-                className="btn btn-primary w-100 py-2 fw-bold"
-                onClick={confirmarCompra}
-              >
-                Confirmar Compra
-              </button>
+              {/*Link que se encarga de llevarnos al formulario de compra */}
+<Link 
+  to="/checkout" 
+  className="btn btn-primary w-100 py-2 fw-bold text-center text-decoration-none"
+>
+  Ir al Formulario de Compra
+</Link>
             </div>
           </div>
         </div>

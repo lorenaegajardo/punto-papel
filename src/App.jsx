@@ -8,6 +8,7 @@ import Carrito from './pages/Carrito'
 import Contacto from './pages/Contacto'
 import BarraNavegacion from './components/Navbar'
 import Footer from "./components/Footer";
+import Formulario from './components/FormularioCompra';
 
 function App() {
   const [carrito, setCarrito] = useState(() => {
@@ -54,6 +55,10 @@ const eliminarDelCarrito = (idProducto) => {
     carritoActual.filter((item) => item.id !== idProducto)
   )
 }
+
+const vaciarCarrito = () => {
+  setCarrito([]);
+};
 
 const cambiarCantidad = (idProducto, nuevaCantidad) => {
   if (Number.isInteger(nuevaCantidad) && nuevaCantidad >= 0) {
@@ -106,9 +111,21 @@ const cantidadTotal = carrito.reduce(
             cambiarCantidad={cambiarCantidad}
             totalCarrito={totalCarrito}
             cantidadTotal={cantidadTotal}
+            vaciarCarrito={vaciarCarrito}
           />
         }
       />
+
+      <Route
+  path="/checkout"
+  element={
+    <Formulario
+      carrito={carrito}
+      totalCarrito={totalCarrito}
+      vaciarCarrito={vaciarCarrito}
+    />
+  }
+/>
 
         <Route path="/contacto" element={<Contacto />} />
 
