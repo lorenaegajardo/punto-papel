@@ -99,7 +99,7 @@ const cantidadTotal = carrito.reduce(
 
       <Route
         path="/producto/:id"
-        element={<DetalleProducto agregarAlCarrito={agregarAlCarrito} />}
+        element={<DetalleProducto agregarAlCarrito={agregarAlCarrito} carrito={carrito} />}
       />
 
       <Route
