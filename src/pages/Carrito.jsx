@@ -1,33 +1,8 @@
-import { useState } from 'react';
 import CarritoItem from '../components/CarritoItem';
-import { Link } from 'react-router'; // 
+import { Link } from 'react-router'; 
 
 function Carrito({ carrito, cambiarCantidad, eliminarDelCarrito, totalCarrito, cantidadTotal }) {
   
-  const [compraConfirmada, setCompraConfirmada] = useState(false);
-
-  const confirmarCompra = () => {
-    if (carrito.length === 0) {
-      alert("El carrito está vacío.");
-      return;
-    }
-    setCompraConfirmada(true);
-  };
-
-  if (compraConfirmada) {
-    return (
-      <div className="container mt-5 text-center">
-        <div className="alert alert-success p-4 shadow">
-          <h2 className="alert-heading">¡Compra Confirmada! 🎉</h2>
-          <p>Tu compra se ha realizado con éxito.</p>
-          <Link to="/productos" className="btn btn-outline-success mt-3">
-            Volver a la tienda
-          </Link>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="container mt-4">
       <h2 className="mb-4 text-primary">🛒 Tu Carrito de Compras</h2>
