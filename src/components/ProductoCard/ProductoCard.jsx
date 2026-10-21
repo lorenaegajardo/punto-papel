@@ -2,7 +2,9 @@ import { Button, Card } from "react-bootstrap"
 import { Link } from "react-router";
 import styles from "./ProductoCard.module.css"
 
-function ProductoCard({ producto, agregarAlCarrito }) {
+function ProductoCard({ producto, agregarAlCarrito, cantidadEnCarrito }) {
+  const stockDisponible = producto.stock - cantidadEnCarrito
+
   return (
     <>
       <Card className={`h-100 ${styles.productoCard}`}>
@@ -17,15 +19,15 @@ function ProductoCard({ producto, agregarAlCarrito }) {
           <div className="mt-auto">
             <div className="d-flex justify-content-between align-items-center">
               <h5 className="fw-bold">${producto.precio.toLocaleString("es-AR")}</h5>
-              <h6 className={producto.stock > 0 ? "" : "text-danger fw-bold"}>
-                {producto.stock > 0 ? `Stock: ${producto.stock}` : "Sin Stock"}
+              <h6 className={stockDisponible > 0 ? "" : "text-danger fw-bold"}>
+                {stockDisponible > 0 ? `Stock: ${stockDisponible}` : "Sin Stock"}
               </h6>
             </div>
             <div className="d-flex justify-content-between gap-3" >
               <Button as={Link} to={`/producto/${producto.id}`} className={`flex-fill ${styles.productoButtonDetalle}`}>
                 Ver Detalles
               </Button>
-              <Button className={`flex-fill ${styles.productoButtonCompra}`} onClick={() => agregarAlCarrito(producto)} disabled={producto.stock <= 0}>
+              <Button className={`flex-fill ${styles.productoButtonCompra}`} onClick={() => agregarAlCarrito(producto)} disabled={stockDisponible <= 0}>
                 Agregar
               </Button>
             </div>

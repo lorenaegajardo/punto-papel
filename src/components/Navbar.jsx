@@ -1,7 +1,7 @@
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { Link, NavLink } from 'react-router-dom';
 
-function BarraNavegacion() {
+function BarraNavegacion({ cantidadTotal }) {
   return (
     <Navbar bg="white" expand="lg" className="shadow-sm sticky-top py-2">
       <Container>
@@ -33,7 +33,11 @@ function BarraNavegacion() {
               to="/carrito" 
               className="btn btn-outline-primary position-relative px-3 py-1 ms-lg-2 mt-2 mt-lg-0 text-primary border-primary rounded-pill"
             >
-              🛒 Carrito
+              🛒 Carrito {cantidadTotal > 0 && (
+                <span className="badge bg-primary rounded-pill ms-1">
+                    {cantidadTotal}
+                </span>
+              )}
               
             </Nav.Link>
           </Nav>

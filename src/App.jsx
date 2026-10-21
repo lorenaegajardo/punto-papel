@@ -82,14 +82,14 @@ const cantidadTotal = carrito.reduce(
 
   return (
       <div className="d-flex flex-column min-vh-100">
-    <BarraNavegacion />
+    <BarraNavegacion cantidadTotal={cantidadTotal} />
 
     <main className="flex-grow-1">
       <Routes>
         <Route path="/" element={<Inicio />} />
         <Route
           path="/productos"
-          element={<Productos agregarAlCarrito={agregarAlCarrito} />}
+          element={<Productos agregarAlCarrito={agregarAlCarrito} carrito={carrito} />}
       />
 
       <Route
